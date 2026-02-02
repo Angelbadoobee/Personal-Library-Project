@@ -1,6 +1,7 @@
 # Personal Library Analytics Dashboard
 
-**Personal Library Analytics Dashboard** is a web-based tool that helps you explore, visualize, and analyze your personal book collection. Gain insights into reading habits, genre preferences, ratings, and series completion—all in an interactive dashboard.
+**Personal Library Analytics Dashboard** was born from my love of books meshed with my interest in data analytics. It started as a googled doc (see below) of me just logging my person library of books. Then eventually I realized I could do something with all of this data. I will continue to improve the website AND update list of books I have to get more analysis on my reading habits and patterns. It is a web-based tool that helps you explore, visualize, and analyze your personal book collection. Gain insights into reading habits, genre preferences, ratings, and series completion—all in an interactive dashboard.
+<img width="2338" height="1288" alt="image" src="https://github.com/user-attachments/assets/d535918b-3f03-4800-8f40-5947ccba4e17" />
 
 ---
 
