@@ -17,12 +17,18 @@
 
 ## Features
 
-- **Upload Your Data:** Supports `.csv`, `.xlsx`, or `.xls` formats  
-- **Collection Overview:** Total books, reading completion, total pages, average rating  
-- **Genre Analysis:** Number of books, average rating, pages read per genre  
-- **Ratings Insights:** Rating distribution, page count vs rating, format-based rating analysis  
-- **Series Deep Dive:** Detects book series, tracks volumes, completion rates, and average ratings  
-- **Library View:** Filterable and sortable table by genre, status, and format  
+- **Upload Your Data:** Supports `.csv`, `.xlsx`, or `.xls` formats
+  <img width="1237" height="211" alt="image" src="https://github.com/user-attachments/assets/0660c4ea-00aa-4d2d-b5d5-7e94cf49056d" />
+- **Collection Overview:** Total books, reading completion, total pages, average rating
+ <img width="1239" height="360" alt="image" src="https://github.com/user-attachments/assets/f00603d2-485c-4b6e-a7f5-44e73d8105fd" />
+- **Genre Analysis:** Number of books, average rating, pages read per genre
+  <img width="1241" height="998" alt="image" src="https://github.com/user-attachments/assets/9d6b80dd-a89e-4251-984c-4e09a32e13b9" />
+- **Ratings Insights:** Rating distribution, page count vs rating, format-based rating analysis
+  <img width="1217" height="873" alt="image" src="https://github.com/user-attachments/assets/abf2073f-bfac-4a8e-8471-d7026b17a0c4" />
+- **Series Deep Dive:** Detects book series, tracks volumes, completion rates, and average ratings
+  <img width="1218" height="405" alt="image" src="https://github.com/user-attachments/assets/71ce23bb-b92f-4c1f-82e1-b644a1808b4f" />
+- **Library View:** Filterable and sortable table by genre, status, and format
+  <img width="1228" height="1154" alt="image" src="https://github.com/user-attachments/assets/ca7fca96-29af-4844-b11c-81644a599237" />
 - **Sample Dataset:** Quickly test the dashboard with a preloaded collection  
 
 ---
