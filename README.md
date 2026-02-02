@@ -20,7 +20,7 @@
 - **Upload Your Data:** Supports `.csv`, `.xlsx`, or `.xls` formats
   <img width="1237" height="211" alt="image" src="https://github.com/user-attachments/assets/0660c4ea-00aa-4d2d-b5d5-7e94cf49056d" />
 - **Collection Overview:** Total books, reading completion, total pages, average rating
- <img width="1239" height="360" alt="image" src="https://github.com/user-attachments/assets/f00603d2-485c-4b6e-a7f5-44e73d8105fd" />
+  <img width="1239" height="360" alt="image" src="https://github.com/user-attachments/assets/f00603d2-485c-4b6e-a7f5-44e73d8105fd" />
 - **Genre Analysis:** Number of books, average rating, pages read per genre
   <img width="1241" height="998" alt="image" src="https://github.com/user-attachments/assets/9d6b80dd-a89e-4251-984c-4e09a32e13b9" />
 - **Ratings Insights:** Rating distribution, page count vs rating, format-based rating analysis
