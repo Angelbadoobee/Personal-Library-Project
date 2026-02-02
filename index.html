@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Collection Analytics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="book.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Book Collection Analytics</h1>
+            <div class="subtitle">Reading Insights & Collection Analysis</div>
+        </header>
+        
+        <div class="upload-section">
+            <h3>Input Data</h3>
+            <div class="upload-controls">
+                <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" style="display: none;">
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Upload Book Data</button>
+                <button class="sample-btn" onclick="loadSampleData()">Load Sample Collection</button>
+                <div id="fileName" class="file-name"></div>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('overview')">Collection Overview</button>
+            <button class="tab" onclick="switchTab('genres')">Genre Preferences</button>
+            <button class="tab" onclick="switchTab('ratings')">Ratings Analysis</button>
+            <button class="tab" onclick="switchTab('series')">Series Deep Dive</button>
+            <button class="tab" onclick="switchTab('library')">Library</button>
+        </div>
+        
+        <div id="overview" class="tab-content active">
+            <div class="stats-grid" id="overviewStats">
+                <div class="no-data-message">Upload your book collection data or load the sample dataset to begin analysis</div>
+            </div>
+            
+            <div id="overviewCharts" style="display: none;">
+                <div class="chart-container">
+                    <div class="chart-title">Reading Completion Status</div>
+                    <canvas id="completionChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title">Collection by Format</div>
+                    <canvas id="formatChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title">Pages Read vs Unread</div>
+                    <canvas id="pagesChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div id="genres" class="tab-content">
+            <div class="filter-section">
+                <div class="filter-group">
+                    <label class="filter-label">Filter by Status</label>
+                    <select id="genreStatusFilter" onchange="updateGenreAnalysis()">
+                        <option value="all">All Books</option>
+                        <option value="read">Read Only</option>
+                        <option value="unread">Unread Only</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="genreCharts" style="display: none;">
+                <div class="chart-container">
+                    <div class="chart-title">Books by Genre</div>
+                    <canvas id="genreCountChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title">Average Rating by Genre</div>
+                    <canvas id="genreRatingChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title">Pages Read by Genre</div>
+                    <canvas id="genrePagesChart"></canvas>
+                </div>
+            </div>
+            
+            <div id="noGenreData" class="no-data-message">Upload book data to see genre analysis</div>
+        </div>
+        
+        <div id="ratings" class="tab-content">
+            <div id="ratingCharts" style="display: none;">
+                <div class="chart-container">
+                    <div class="chart-title">Rating Distribution</div>
+                    <canvas id="ratingDistChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title">Page Count vs Rating</div>
+                    <canvas id="pagesVsRatingChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title">Average Rating by Format</div>
+                    <canvas id="formatRatingChart"></canvas>
+                </div>
+                
+                <div class="insights-section">
+                    <h2> Rating Behavior Insights</h2>
+                    <div id="ratingInsights"></div>
+                </div>
+            </div>
+            
+            <div id="noRatingData" class="no-data-message">Upload book data to see rating analysis</div>
+        </div>
+        
+        <div id="series" class="tab-content">
+            <div id="seriesContainer" style="display: none;">
+                <div id="seriesList"></div>
+            </div>
+            
+            <div id="noSeriesData" class="no-data-message">Upload book data to see series analysis</div>
+        </div>
+        
+        <div id="library" class="tab-content">
+            <div class="filter-section">
+                <div class="filter-group">
+                    <label class="filter-label">Genre</label>
+                    <select id="libraryGenreFilter" onchange="updateLibrary()">
+                        <option value="all">All Genres</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Status</label>
+                    <select id="libraryStatusFilter" onchange="updateLibrary()">
+                        <option value="all">All Books</option>
+                        <option value="yes">Read</option>
+                        <option value="no">Unread</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Format</label>
+                    <select id="libraryFormatFilter" onchange="updateLibrary()">
+                        <option value="all">All Formats</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="libraryTable" style="display: none;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Genre</th>
+                            <th>Format</th>
+                            <th>Pages</th>
+                            <th>Rating</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="libraryTableBody"></tbody>
+                </table>
+            </div>
+            
+            <div id="noLibraryData" class="no-data-message">Upload book data to see your library</div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
