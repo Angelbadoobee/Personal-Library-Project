@@ -658,16 +658,32 @@ function generateSeriesChart(name, books) {
                     borderColor: '#ee7d49',
                     backgroundColor: 'rgba(139, 38, 53, 0.1)',
                     tension: 0.3,
-                    fill: true
+                    fill: true,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
                 }]
             },
             options: {
                 responsive: true,
                 scales: {
                     y: { min: 0, max: 5 }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function (tooltipItems) {
+                                const index = tooltipItems[0].dataIndex;
+                                return ratedBooks[index].title;
+                            },
+                            label: function (tooltipItem) {
+                                return `Rating: ${tooltipItem.raw.toFixed(2)}`;
+                            }
+                        }
+                    }
                 }
             }
         });
+
     }, 100);
     
     return `<canvas id="${canvasId}" style="max-height: 200px; margin-top: 20px;"></canvas>`;
